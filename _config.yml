@@ -8,14 +8,12 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : Jekyll Bootstrap
-tagline: Site Tagline
+title : StatOfMind
+tagline: A melting pot of statistics, machine learning and data vizualization.
 author :
-  name : Name Lastname
-  email : blah@email.test
-  github : username
-  twitter : username
-  feedburner : feedname
+  name : Thomas Vincent
+  github : tlfvincent
+  twitter : Thomas_LVincent
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -70,7 +68,7 @@ JB :
   # Some JB helpers refer to these paths; change them here if needed.
   #
   archive_path: /archive.html
-  categories_path : /categories.html
+  about_path : /about.html
   tags_path : /tags.html
   atom_path : /atom.xml
   rss_path : /rss.xml
