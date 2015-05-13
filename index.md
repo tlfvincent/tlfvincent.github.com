@@ -12,7 +12,7 @@ tagline: Supporting tagline
        <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
     </li>
        {{ post.content | strip_html | truncatewords:75}}<br>
-            <a href="{{ post.url }}">Read more...</a><br><br>
+            <a href="{{ post.url }}"><b>Read more...</b></a><br><br>
   {% endfor %}
 </ul>
 
