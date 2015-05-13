@@ -45,7 +45,7 @@ var force = d3.layout.force()
     .size([width, height]);
 
 
-d3.json("/miserables.json", function(error, graph) {
+d3.json("miserables.json", function(error, graph) {
 
   var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -103,6 +103,11 @@ d3.json("/miserables.json", function(error, graph) {
 
 .node text {
   font: 9px helvetica;
+}
+
+d3-tip {
+    line-height: 1;
+    color: black;
 }
 </style>
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -272,9 +277,107 @@ d3.json("/miserables.json", function(error, graph) {
 
 <div id="labelled_network"></div>
 
+Obviously, a network with too many nodes becomes quickly unreadable once we add labels, so in this case it is preferable to resort to D3's tooltip functionnality, which allows us to display the desired properties whenever a user hovers over any given node.
+
 ### Adding hover text over nodes
 
+{% highlight javascript %}
+<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+{% endhighlight %}
+
+
+{% highlight css %}
+d3-tip {
+    line-height: 1;
+    color: black;
+}
+{% endhighlight %}
+
+<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
+<script>
+var width = 500,
+    height = 500;
+
+var color = d3.scale.category20();
+
+var hover_force = d3.layout.force()
+    .charge(-120)
+    .linkDistance(30)
+    .size([width, height]);
+
+
+d3.json("/miserables.json", function(error, graph) {
+
+  var hover_svg = d3.select("div#hover_network").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+  //Set up tooltip
+var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+    return  d.name + "";
+})
+hover_svg.call(tip);
+
+  hover_force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+
+  var hover_link = hover_svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("line")
+      .attr("class", "link")
+      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+
+  var hover_node = hover_svg.selectAll(".node")
+      .data(graph.nodes)
+      .enter().append("g")
+      .attr("class", "node")
+      .call(labelled_force.drag);
+
+    hover_node.append("circle")
+        .attr("r", 5)
+        .style("fill", function (d) {
+        return color(d.group);
+    })
+    .on('mouseover', tip.show) //Added
+    .on('mouseout', tip.hide); //Added 
+
+    // hover_node.append("text")
+    //       .attr("dx", 10)
+    //       .attr("dy", ".35em")
+    //       .text(function(d) { return d.name })
+    //       .style("stroke", "gray");
+
+  hover_force.on("tick", function() {
+    hover_link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    d3.selectAll("circle")
+      .attr("cx", function (d) {return d.x;})
+      .attr("cy", function (d) {return d.y;});
+
+    // d3.selectAll("text")
+    //   .attr("x", function (d) {return d.x;})
+    //   .attr("y", function (d) {return d.y;});
+  });
+});
+</script>
+
+<div id="hover_network"></div>
+
+
+
+
 ### Adding FontAwesome icons instead of nodes
+
+FontAwesome icons and associated CSS codes can be found [here](http://fortawesome.github.io/Font-Awesome/icons/)
+
 <script>
 var width = 500,
     height = 500;
@@ -306,25 +409,22 @@ d3.json("/miserables.json", function(error, graph) {
 
   var fontawesome_node = fontawesome_svg.selectAll(".node")
       .data(graph.nodes)
-      .enter()
-      .append("circle")
+      .enter().append("g")
       .attr("class", "node")
-      .attr("r", 5);
+      .call(fontawesome_force.drag);
 
-      //.style("fill", function(d) { return color(d.group); })
-      
+    fontawesome_node.append("circle");
+    //     .attr("r", 5)
+    //     .style("fill", function (d) {
+    //     return color(d.group);
+    // });
 
-  // fontawesome_node.append('title')
-  //     .attr('text-anchor', 'middle')
-  //     .attr('dominant-baseline', 'central')
-  //     .attr('font-family', 'FontAwesome')
-  //     .attr('font-size', '10em')
-  //     .text('\uf007');
-      //.text(function(d) { return '\uf007' });
-
-  fontawesome_node.append("title")
-     .text(function(d) { return d.name; });
-  fontawesome_node.call(fontawesome_force.drag);
+    fontawesome_node.append("text")
+      .attr('text-anchor', 'middle')
+      .attr('dominant-baseline', 'central')
+      .attr('font-family', 'FontAwesome')
+      .attr('size', '100px')
+      .text(function(d) { return '\uf007' });
 
 
 
@@ -334,8 +434,15 @@ d3.json("/miserables.json", function(error, graph) {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    fontawesome_node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
+    // fontawesome_node.attr("cx", function(d) { return d.x; })
+    //     .attr("cy", function(d) { return d.y; });
+    d3.selectAll("circle")
+      .attr("cx", function (d) {return d.x;})
+      .attr("cy", function (d) {return d.y;});
+
+    d3.selectAll("text")
+      .attr("x", function (d) {return d.x;})
+      .attr("y", function (d) {return d.y;}); 
   });
 });
 </script>
@@ -347,3 +454,5 @@ d3.json("/miserables.json", function(error, graph) {
 
 - This page gives [a number of additional features](http://www.coppelia.io/2014/07/an-a-to-z-of-extra-features-for-the-d3-force-layout/) that range in increasing degree in complexity.
 - This page shows a [really neat example](http://bl.ocks.org/GerHobbelt/3071239) of convex hulls applied to clusters of nodes in a D3 network.
+
+
