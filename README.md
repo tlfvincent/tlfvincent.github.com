@@ -1,63 +1,49 @@
-# Jekyll Incorporated
-Modern Jekyll based blog. Great for companies, products or anything. See live at [blog.sendtoinc.com](http://blog.sendtoinc.com)
+![preview Long Haul](/preview.jpg)
 
-## Installation & Usage
-    bundle install
-    jekyll serve --watch
+Long Haul is a minimal jekyll theme built with COMPASS / SASS / SUSY and focuses on long form blog plosts. It is meant to used as a starting point for a jekyll blog/website.
 
-_Note: Requires Ruby version 1.9.3 =>. For example use [rbenv](https://github.com/sstephenson/rbenv)_   
-    
-## Configuration
-Edit: _config.yml (general options), main.css (theme colors &amp; fonts)
+If you really enjoy Long Haul and want to give me credit somewhere on the send or tweet out your experience with Long Haul and tag me [@brianmaierjr](https://twitter.com/brianmaier).
 
-```
-jekyll-incorporated/
-├── _config.yml
-├── _assets/
-    ├── stylesheets/
-        ├── main.scss
-```
+####[View Demo](http://brianmaierjr.com/long-haul)
 
-_Note: when editing _config.yml, you need to restart jekyll to see the changes.__
+## Features
 
-    
-## Publish to Github Pages
-1. Add your domain to _CNAME_
-2. Edit your repo address at _Rakefile_
-    
-Run rake task. **NOTE: It will deploy the generated site to _gh-pages_ branch overwriting it**    
-``` 
-rake site:publish
-```
+- Minimal, Type Focused Design
+- Built with SASS + COMPASS
+- Layout with SUSY Grid
+- SVG Social Icons
+- Responsive Nav Menu
+- XML Feed for RSS Readers
+- Contact Form via Formspree
+- 5 Post Loop with excerpt on Home Page
+- Previous / Next Post Navigation
+- Estimated Reading Time for posts
+- Stylish Drop Cap on posts
+- A Better Type Scale for all devices
 
-## Usage examples
+## Setup
 
-* Adroll Engineering http://tech.adroll.com/
-* Brace.io blog http://blog.brace.io/
-* Spark.io blog http://blog.spark.io/
-* Department of Better Technology http://blog.dobt.co/
+1. [Install Jekyll](http://jekyllrb.com)
+2. Fork the [Long Haul repo](http://github.com/brianmaierjr/long-haul)
+3. Clone it
+4. Install susy `gem install susy` 
+5. Install normalize `gem install normalize-scss`
+6. Run Jekyll `jekyll serve -w`
+7. Run `compass watch`
+8. Customize!
 
-## Authors
+## Site Settings
 
-Originally build for [sendtoinc.com](https://sendtoinc.com), your workspace for sharing and organizing knowledge
+The main settings can be found inside the `_config.yml` file:
 
-**Karri Saarinen**
+- **title:** title of your site
+- **description:** description of your site
+- **url:** your url
+- **paginate:** the amount of posts displayed on homepage
+- **navigation:** these are the links in the main site navigation
+- **social** diverse social media usernames (optional)
+- **google_analytics** Google Analytics key (optional)
 
-+ [http://twitter.com/karrisaarinen](http://twitter.com/karrisaarinen)
-+ [http://github.com/ksaa](http://github.com/ksaa)
+## License
 
-**Jori Lallo**
-
-+ [http://twitter.com/jorilallo](http://twitter.com/jorilallo)
-+ [http://github.com/jorde](http://github.com/jorilallo)
-
-## Todo:
-
-+ Documentation
-+ Less config files
-+ Better deploy scripts
-
-## Copyright and license
-
-Copyright 2013 Kippt Inc. under [The MIT License ](LICENSE)
-
+This is [MIT](LICENSE) with no added caveats, so feel free to use this Jekyll theme on your site without linking back to me or using a disclaimer.
