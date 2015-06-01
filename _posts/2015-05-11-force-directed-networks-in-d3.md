@@ -3,6 +3,7 @@ layout: post
 title: "Force directed networks in D3"
 date: 2015-05-01
 ---
+{% include JB/setup %}
 
 <p class="intro"><span class="dropcap">R</span>ecently, I have been involved in a number of projects that have required the use for neat interactive vizualization of networks. After strying out a few options, D3 quickly came out as the most logical and appealling choice. To paraphrase D3's home website *D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS*.</p>
 
@@ -14,6 +15,7 @@ For the sake of clarity, I wil omit the usual HTML wrappers, and get straight to
 {% highlight html %}
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {% endhighlight %}
+<script src="http://d3js.org/d3.v3.min.js"></script>
 
 We can also add some CSS styling to the nodes and links that will be displayed in our network
 {% highlight css %}
@@ -33,8 +35,8 @@ We can also add some CSS styling to the nodes and links that will be displayed i
 Finally, we can add the code chunk below to display the most basic D3 force directed network:
 {% highlight javascript %}
 <script>
-var width = 500,
-    height = 500;
+var width = 2000,
+    height = 400;
 
 var color = d3.scale.category20();
 
@@ -109,7 +111,7 @@ d3-tip {
     color: black;
 }
 </style>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 
 <script>
 var width = 500,
@@ -160,7 +162,7 @@ d3.json("/miserables.json", function(error, graph) {
 });
 </script>
 
-<div id="basic_network"></div>
+<div id="basic_network" style="text-align:center"></div>
 
 
 ### Adding text labels to nodes
@@ -224,7 +226,7 @@ var labelled_force = d3.layout.force()
 
 d3.json("/miserables.json", function(error, graph) {
 
-	var labelled_svg = d3.select("div#labelled_network").append("svg")
+  var labelled_svg = d3.select("div#labelled_network").append("svg")
     .attr("width", width)
     .attr("height", height);
 
@@ -249,7 +251,7 @@ d3.json("/miserables.json", function(error, graph) {
         .attr("r", 5)
         .style("fill", function (d) {
         return color(d.group);
-    })
+    });
 
     labelled_node.append("text")
           .attr("dx", 10)
@@ -263,20 +265,21 @@ d3.json("/miserables.json", function(error, graph) {
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    d3.selectAll("circle")
+    labelled_node.selectAll("circle")
       .attr("cx", function (d) {return d.x;})
       .attr("cy", function (d) {return d.y;});
 
-    d3.selectAll("text")
+    labelled_node.selectAll("text")
       .attr("x", function (d) {return d.x;})
       .attr("y", function (d) {return d.y;});
-  });
+    });
 });
 </script>
 
-<div id="labelled_network"></div>
+<div id="labelled_network" style="text-align:center"></div>
 
 Obviously, a network with too many nodes becomes quickly unreadable once we add labels, so in this case it is preferable to resort to D3's tooltip functionnality, which allows us to display the desired properties whenever a user hovers over any given node.
+
 
 ### Adding hover text over nodes
 
@@ -357,7 +360,7 @@ hover_svg.call(tip);
         .attr("x2", function(d) { return d.target.x; })
         .attr("y2", function(d) { return d.target.y; });
 
-    d3.selectAll("circle")
+    hover_node.selectAll("circle")
       .attr("cx", function (d) {return d.x;})
       .attr("cy", function (d) {return d.y;});
 
@@ -368,7 +371,7 @@ hover_svg.call(tip);
 });
 </script>
 
-<div id="hover_network"></div>
+<div id="hover_network" style="text-align:center"></div>
 
 
 
@@ -435,18 +438,18 @@ d3.json("/miserables.json", function(error, graph) {
 
     // fontawesome_node.attr("cx", function(d) { return d.x; })
     //     .attr("cy", function(d) { return d.y; });
-    d3.selectAll("circle")
+    fontawesome_node.selectAll("circle")
       .attr("cx", function (d) {return d.x;})
       .attr("cy", function (d) {return d.y;});
 
-    d3.selectAll("text")
+    fontawesome_node.selectAll("text")
       .attr("x", function (d) {return d.x;})
       .attr("y", function (d) {return d.y;}); 
   });
 });
 </script>
 
-<div id="fontawesome_network"></div>
+<div id="fontawesome_network" style="text-align:center"></div>
 
 
 #### Other helpful pages
