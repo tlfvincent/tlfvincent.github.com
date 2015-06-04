@@ -15,363 +15,71 @@ For the sake of clarity, I wil omit the usual HTML wrappers, and get straight to
 {% highlight html %}
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {% endhighlight %}
-<script src="http://d3js.org/d3.v3.min.js"></script>
 
-We can also add some CSS styling to the nodes and links that will be displayed in our network
-{% highlight css %}
+We can also add some CSS styling to the nodes and links that will be displayed in our network and finally display the most basic D3 force directed network:
+
+<p data-height="500" data-theme-id="0" data-slug-hash="XbMpGq" data-default-tab="result" data-user="tlfvincent" class='codepen'>See the Pen <a href='http://codepen.io/tlfvincent/pen/XbMpGq/'>XbMpGq</a> by Thomas Vincent (<a href='http://codepen.io/tlfvincent'>@tlfvincent</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+{% highlight javascript linenos %} 
 <style>
 .node {
   stroke: #fff;
   stroke-width: 1.5px;
 }
-
 .link {
   stroke: #999;
   stroke-opacity: .6;
 }
-</style>
-{% endhighlight %}
-
-Finally, we can add the code chunk below to display the most basic D3 force directed network:
-{% highlight javascript %}
-<script>
-var width = 2000,
-    height = 400;
-
-var color = d3.scale.category20();
-
-var force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-
-
-d3.json("miserables.json", function(error, graph) {
-
-  var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-
-  var link = svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-  var node = svg.selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
-      .call(force.drag);
-
-  node.append("title")
-      .text(function(d) { return d.name; });
-
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  });
-});
-</script>
-{% endhighlight %}
-
-
-
-
-
-<style>
-.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-
 .node text {
   font: 9px helvetica;
 }
-
 d3-tip {
     line-height: 1;
     color: black;
 }
 </style>
-
-
-<script>
-var width = 500,
-    height = 500;
-
-var color = d3.scale.category20();
-
-var basic_force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-
-
-d3.json("/miserables.json", function(error, graph) {
-
-  var basic_svg = d3.select("div#basic_network").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  basic_force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-
-  var basic_link = basic_svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-  var basic_node = basic_svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("circle")
-      .attr("class", "node")
-      .attr("r", 5)
-      .style("fill", function(d) { return color(d.group); })
-      .call(basic_force.drag);
-
-  basic_force.on("tick", function() {
-    basic_link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    basic_node.attr("cx", function(d) { return d.x; })
-        .attr("cy", function(d) { return d.y; });
-  });
-});
-</script>
-
-<div id="basic_network" style="text-align:center"></div>
-
+{% endhighlight %}
 
 ### Adding text labels to nodes
 Usually, it is desirable to display attributes on the nodes, so people often like to add text information. This can be achieved by adding a few changes to the code shown above. Below is the new code chunk that needs to be modified:
 
-{% highlight javascript %} 
-  var node = svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("g")
-      .attr("class", "node")
-      .call(force.drag);
-
-    node.append("circle")
-        .attr("r", 5)
-        .style("fill", function (d) {
-        return color(d.group);
-    })
-
-    node.append("text")
-          .attr("dx", 10)
-          .attr("dy", ".35em")
-          .text(function(d) { return d.name });
-          .style("stroke", "gray");
-
-  force.on("tick", function() {
-    link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    d3.selectAll("circle")
-      .attr("cx", function (d) {return d.x;})
-      .attr("cy", function (d) {return d.y;});
-
-    d3.selectAll("text")
-      .attr("x", function (d) {return d.x;})
-      .attr("y", function (d) {return d.y;});
-  });
-{% endhighlight %}
+<p data-height="500" data-theme-id="0" data-slug-hash="zGZZGJ" data-default-tab="result" data-user="tlfvincent" class='codepen'>See the Pen <a href='http://codepen.io/tlfvincent/pen/zGZZGJ/'>zGZZGJ</a> by Thomas Vincent (<a href='http://codepen.io/tlfvincent'>@tlfvincent</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 We can also add some styling to the displayed text by adding the following CSS:
 
-{% highlight css %}
+{% highlight css linenos %}
 .node text {
   font: 9px helvetica;
 }
 {% endhighlight %}
 
 
-<script>
-var width = 500,
-    height = 500;
-
-var color = d3.scale.category20();
-
-var labelled_force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-
-
-d3.json("/miserables.json", function(error, graph) {
-
-  var labelled_svg = d3.select("div#labelled_network").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  labelled_force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-
-  var labelled_link = labelled_svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-  var labelled_node = labelled_svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("g")
-      .attr("class", "node")
-      .call(labelled_force.drag);
-
-    labelled_node.append("circle")
-        .attr("r", 5)
-        .style("fill", function (d) {
-        return color(d.group);
-    });
-
-    labelled_node.append("text")
-          .attr("dx", 10)
-          .attr("dy", ".35em")
-          .text(function(d) { return d.name })
-          .style("stroke", "gray");
-
-  labelled_force.on("tick", function() {
-    labelled_link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    labelled_node.selectAll("circle")
-      .attr("cx", function (d) {return d.x;})
-      .attr("cy", function (d) {return d.y;});
-
-    labelled_node.selectAll("text")
-      .attr("x", function (d) {return d.x;})
-      .attr("y", function (d) {return d.y;});
-    });
-});
-</script>
-
-<div id="labelled_network" style="text-align:center"></div>
 
 Obviously, a network with too many nodes becomes quickly unreadable once we add labels, so in this case it is preferable to resort to D3's tooltip functionnality, which allows us to display the desired properties whenever a user hovers over any given node.
 
 
-### Adding hover text over nodes
+### Adding a hover functionality
 
+In order to enable hovering over the nodes in your network, it is first necssary to sort the relevant javascript code.
 {% highlight javascript %}
 <script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
 {% endhighlight %}
 
+As usual, one can also add some CSS styling to hover tip.
 
-{% highlight css %}
+{% highlight css linenos %}
 d3-tip {
     line-height: 1;
     color: black;
 }
 {% endhighlight %}
 
-<script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
-<script>
-var width = 500,
-    height = 500;
+<p data-height="500" data-theme-id="0" data-slug-hash="yNMjrQ" data-default-tab="result" data-user="tlfvincent" class='codepen'>See the Pen <a href='http://codepen.io/tlfvincent/pen/yNMjrQ/'>yNMjrQ</a> by Thomas Vincent (<a href='http://codepen.io/tlfvincent'>@tlfvincent</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
-var color = d3.scale.category20();
-
-var hover_force = d3.layout.force()
-    .charge(-120)
-    .linkDistance(30)
-    .size([width, height]);
-
-
-d3.json("/miserables.json", function(error, graph) {
-
-  var hover_svg = d3.select("div#hover_network").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-  //Set up tooltip
-var tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html(function (d) {
-    return  d.name + "";
-})
-hover_svg.call(tip);
-
-  hover_force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-
-  var hover_link = hover_svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("line")
-      .attr("class", "link")
-      .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-  var hover_node = hover_svg.selectAll(".node")
-      .data(graph.nodes)
-      .enter().append("g")
-      .attr("class", "node")
-      .call(labelled_force.drag);
-
-    hover_node.append("circle")
-        .attr("r", 5)
-        .style("fill", function (d) {
-        return color(d.group);
-    })
-    .on('mouseover', tip.show) //Added
-    .on('mouseout', tip.hide); //Added 
-
-    // hover_node.append("text")
-    //       .attr("dx", 10)
-    //       .attr("dy", ".35em")
-    //       .text(function(d) { return d.name })
-    //       .style("stroke", "gray");
-
-  hover_force.on("tick", function() {
-    hover_link.attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    hover_node.selectAll("circle")
-      .attr("cx", function (d) {return d.x;})
-      .attr("cy", function (d) {return d.y;});
-
-    // d3.selectAll("text")
-    //   .attr("x", function (d) {return d.x;})
-    //   .attr("y", function (d) {return d.y;});
-  });
-});
-</script>
-
-<div id="hover_network" style="text-align:center"></div>
 
 
 
