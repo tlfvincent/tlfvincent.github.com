@@ -127,10 +127,11 @@ header-img: "img/about-bg.jpg"
 }
 .timeline-body > p,
 .timeline-body > ul {
-  margin-bottom: 0;
+  margin-bottom: -10px;
+  margin-top: -10px;
 }
 .timeline-body > p + p {
-  margin-top: 5px;
+  margin-top: -10px;
 }
 
 hr.soft {
@@ -143,6 +144,32 @@ hr.soft {
   padding: 0;
   margin: 0;
 }
+
+hr.short {
+  bottom: -10px;
+}
+
+.image-cropper {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.panel-text {
+  font-size: 16px;
+}
 </style>
 
 <div class="container" style="width:100%">
@@ -154,11 +181,11 @@ hr.soft {
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Data Scientist</h4>
+              <h5 class="timeline-title">Dow Jones</h5>
               <hr>
-              <h4 class="timeline-title">Dow Jones</h4>
             </div>
             <div class="timeline-body">
-              <p>Machine Learning, NLP, vizualization.</p>
+              <p class="panel-text">Machine Learning, NLP, vizualization.</p>
             </div>
           </div>
         </li>
@@ -167,11 +194,11 @@ hr.soft {
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Fellow</h4>
+              <h5 class="timeline-title">Insight Data Science</h5>
               <hr>
-              <h4 class="timeline-title">Insight Data Science</h4>
             </div>
             <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis.</p>
+              <p  class="panel-text">Mussum ipsum cacilds, vidis litro abertis.</p>
             </div>
           </div>
         </li>
@@ -180,11 +207,11 @@ hr.soft {
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Postdoctoral Associate</h4>
+              <h5 class="timeline-title">Weill Cornell Medical College</h5>
               <hr>
-              <h4 class="timeline-title">Weill Cornell Medical College</h4>
             </div>
             <div class="timeline-body">
-              <p>BioStatistics, Inference of Time-Varying Networks.</p>
+              <p  class="panel-text">BioStatistics, Inference of Time-Varying Networks.</p>
             </div>
           </div>
         </li>
@@ -192,11 +219,11 @@ hr.soft {
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Ph.D in BioStatistics</h4>
+              <h5 class="timeline-title">University of Bristol</h5>
               <hr>
-              <h4 class="timeline-title">University of Bristol</h4>
             </div>
             <div class="timeline-body">
-              <p>Machine Learning, Bayesian Statistics and way too much MCMC.</p>
+              <p  class="panel-text">Machine Learning, Bayesian Statistics and way too much MCMC.</p>
             </div>
           </div>
         </li>
@@ -205,11 +232,11 @@ hr.soft {
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Masters in Complexity Sciences</h4>
+              <h5 class="timeline-title">Bristol Centre for Complexity Sciences</h5>
               <hr>
-              <h4 class="timeline-title">Bristol Centre for Complexity Sciences</h4>
             </div>
             <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.</p>
+              <p  class="panel-text">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.</p>
               <hr>
             </div>
           </div>
@@ -218,13 +245,12 @@ hr.soft {
           <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
-              <h4 class="timeline-title">Bachelors</h4>
-              <h4 class="timeline-title">Double Major in Mathematics & Physics</h4>
+              <h4 class="timeline-title">Bachelors: Double Major in Mathematics & Physics</h4>
+              <h5 class="timeline-title">University of Bristol</h5>
               <hr>
-              <h4 class="timeline-title">University of Bristol</h4>
             </div>
             <div class="timeline-body">
-              <p>Mussum ipsum cacilds, vidis litro abertis.</p>
+              <p class="panel-text">Mussum ipsum cacilds, vidis litro abertis.</p>
             </div>
           </div>
         </li>
@@ -238,3 +264,8 @@ hr.soft {
 <hr class="soft">
 
 <h3> Side Projects </h3>
+<div class="image-cropper">
+    <img src="http://www.electricvelocity.com.au/Upload/Blogs/smart-e-bike-side_2.jpg" class="rounded" />
+</div>
+
+
