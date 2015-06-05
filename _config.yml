@@ -1,29 +1,16 @@
+# Site settings
 title: StatOfMind
-description: A melting pot of statistics, machine learning and data vizualization.
-
-url: http://tlfvincent.github.io/
+header-img: img/galaxy.jpg
+email: tlfvincent@gmail.com
+description: "A melting pot of statistics, machine learning and data vizualization."
 baseurl: ""
-paginate_path: "blog/page:num/"
-permalink: blog/:title/
+url: "http://tlfvincent.github.io/"
+twitter_username: Thomas_LVincent
+github_username:  tlfvincent
 
-markdown: redcarpet
+# Build settings
+markdown: kramdown
 highlighter: pygments
+permalink: pretty
 paginate: 5
-
-JB :
-  version : 0.3.0
-
-
-navigation:
- - title: Home
-   url: /index.html
- - title: About
-   url: /about.html
-#- title: Contact
-#  url: /contact
-
-social:
-   github : tlfvincent
-   twitter : Thomas_LVincent
-   email: tlfvincent@gmail.com
-
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]

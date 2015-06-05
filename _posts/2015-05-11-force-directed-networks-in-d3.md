@@ -1,9 +1,11 @@
 ---
-layout: post
+layout:     post
 title: "Force directed networks in D3"
-date: 2015-05-01
+subtitle:   "Because copying D3 is easier than learning"
+date:       2015-05-01
+author:     "Thomas Vincent"
+header-img: "img/post-bg-06.jpg"
 ---
-{% include JB/setup %}
 
 <p class="intro"><span class="dropcap">R</span>ecently, I have been involved in a number of projects that have required the use for neat interactive vizualization of networks. After strying out a few options, D3 quickly came out as the most logical and appealling choice. To paraphrase D3's home website *D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS*.</p>
 

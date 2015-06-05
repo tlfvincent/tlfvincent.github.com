@@ -1,7 +1,10 @@
 ---
-layout: post
+layout:     post
 title: "Jekyll Quickstart to host your blog on GitHub"
-date: 2015-04-28
+subtitle:   "How to save a whole day"
+date:       2015-04-28
+author:     "Thomas Vincent"
+header-img: "img/post-bg-06.jpg"
 ---
 
 After spending some time posting the results my analysis on the now [defunct wordpress blog](https://statofmind.wordpress.com), I have come to the realization that the features offered by wordpress.org are insufiicient. While it provides a great platform for blogging, the inability to embed anything related to JavaScript has sometimes held me back. Therefore, I seeked to find a lightweight blogging platform that would only require some (but not too much) maintenance. After some investigation, it became apparent that GitHub Pages was the best solution, and it would come with the bonus of version control! 
