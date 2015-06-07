@@ -141,25 +141,26 @@ hr.soft {
   background-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
   background-image: -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
   background-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
-  padding: 0;
-  margin: 0;
+  padding: 5px;
+  margin: 30px;
 }
 
 hr.short {
   bottom: -10px;
 }
 
-.image-cropper {
-    width: 250px;
-    height: 250px;
-    position: relative;
-    overflow: hidden;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
-    border-radius: 50%;
+.circular {
+  width: 250px;
+  height: 250px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  background: url(http://link-to-your/image.jpg) no-repeat;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+  -moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
 }
+
 img {
     display: inline;
     margin: 0 auto;
@@ -170,6 +171,34 @@ img {
 .panel-text {
   font-size: 16px;
 }
+
+/* tell the container's children to float left: */
+.float-my-children > * {
+    float:left;
+    margin-right:5px;
+    font-size: 10px;
+    width: 60%;
+}
+
+/* this is called a clearfix. it makes sure that the container's children floats are cleared, without using extra markup */
+
+.clearfix {
+    *zoom:1 /* for IE */
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.imgContainer{
+    float:left;
+}
 </style>
 
 <div class="container" style="width:100%">
@@ -177,7 +206,7 @@ img {
     </div>
     <ul class="timeline">
         <li>
-          <div class="timeline-badge"><i class="glyphicon glyphicon-check"></i></div>
+          <div class="timeline-badge"><i class="glyphicon glyphicon-stats"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Data Scientist</h4>
@@ -190,7 +219,7 @@ img {
           </div>
         </li>
         <li class="timeline-inverted">
-          <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-badge warning"><i class="glyphicon glyphicon-road"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Fellow</h4>
@@ -198,12 +227,12 @@ img {
               <hr>
             </div>
             <div class="timeline-body">
-              <p  class="panel-text">Mussum ipsum cacilds, vidis litro abertis.</p>
+              <p  class="panel-text">An intensive seven week post-doctoral training fellowship bridging the gap between academia and data science.</p>
             </div>
           </div>
         </li>
         <li>
-          <div class="timeline-badge danger"><i class="glyphicon glyphicon-credit-card"></i></div>
+          <div class="timeline-badge danger"><i class="glyphicon glyphicon-stats"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Postdoctoral Associate</h4>
@@ -211,11 +240,12 @@ img {
               <hr>
             </div>
             <div class="timeline-body">
-              <p  class="panel-text">BioStatistics, Inference of Time-Varying Networks.</p>
+              <p  class="panel-text">Biostatistics, Inference of Time-Varying Networks.</p>
             </div>
           </div>
         </li>
-        <li class="timeline-inverted">
+        <li  class="timeline-inverted">
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-education"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Ph.D in BioStatistics</h4>
@@ -228,7 +258,7 @@ img {
           </div>
         </li>
         <li>
-          <div class="timeline-badge info"><i class="glyphicon glyphicon-floppy-disk"></i></div>
+          <div class="timeline-badge info"><i class="glyphicon glyphicon-education"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Masters in Complexity Sciences</h4>
@@ -236,13 +266,13 @@ img {
               <hr>
             </div>
             <div class="timeline-body">
-              <p  class="panel-text">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis.</p>
+              <p  class="panel-text">Interdisplinary projects in Biostatistics.</p>
               <hr>
             </div>
           </div>
         </li>
         <li class="timeline-inverted">
-          <div class="timeline-badge success"><i class="glyphicon glyphicon-thumbs-up"></i></div>
+          <div class="timeline-badge success"><i class="glyphicon glyphicon-education"></i></div>
           <div class="timeline-panel">
             <div class="timeline-heading">
               <h4 class="timeline-title">Bachelors: Double Major in Mathematics & Physics</h4>
@@ -250,7 +280,7 @@ img {
               <hr>
             </div>
             <div class="timeline-body">
-              <p class="panel-text">Mussum ipsum cacilds, vidis litro abertis.</p>
+              <p class="panel-text"></p>
             </div>
           </div>
         </li>
@@ -259,13 +289,110 @@ img {
 
 <hr class="soft">
 
-<h3> Publications </h3>
+<h2>  <center> Side Projects  </center> </h2>
+
+<div>
+    <div class="imgContainer" style="margin: 30px;">
+        <img src="/img/old_blog.png" class="circular" alt="" />
+        <p>This is image 1</p>
+    </div>
+
+    <div class="imgContainer" style="margin: 30px;">
+        <img src="/img/datakind.png" class="circular" alt="" />
+        <p>This is image 2</p>
+    </div>
+</div>
+
+
 
 <hr class="soft">
 
-<h3> Side Projects </h3>
-<div class="image-cropper">
-    <img src="http://www.electricvelocity.com.au/Upload/Blogs/smart-e-bike-side_2.jpg" class="rounded" />
-</div>
+<h2> <center> Publications </center> </h2>
+
+<p style="font-size: 14px;">
+  In a previous life, I spent my time developing statistical tools and libraries to help address questions relevant to the fields of Genetic Medicine and Protein Folding. During this time, I was able to contribute to a number of manuscripts that have been publised in peer-reviewed journals.
+</p>
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="/img/journal_pone.png" style="width:40%; padding-right: 30px;">
+  <div style="font-size: 10px;">
+    <b>Smoking Dysregulates the Human Airway Basal Cell Transcriptome at COPD Risk Locus 19q13.2</b><br>
+    Massive parallel RNA sequencing was used to compare the transcriptome of BC purified from the airway epithelium of healthy nonsmokers (n = 10) and healthy smokers (n = 7). The chromosomal location of the differentially expressed genes was compared to loci identified by GWAS to confer risk for COPD. Smoker BC have 676 genes differentially expressed compared to nonsmoker BC, dominated by smoking up-regulation. Strikingly, 166 (25%) of these genes are located on chromosome 19, with 13 localized to 19q13.2 (p<10−4 compared to chance), including 4 genes (NFKBIB, LTBP4, EGLN2 and TGFB1) associated with risk for COPD. These observations provide the first direct connection between known genetic risks for smoking-related lung disease and airway BC, the population of lung cells that undergo the earliest changes associated with smoking.
+  </div>
+  <a style="font-size: 11px;" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0088051#pone-0088051-g004">Click to view paper</a>
+</p>
+
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="/img/journal_pone_2.png" style="width:40%; padding-right: 30px; height:140px">
+  <div style="font-size: 10px">
+    <b>High Correlation of the Response of Upper and Lower Lobe Small Airway Epithelium to Smoking</b><br>
+    The distribution of lung disease induced by inhaled cigarette smoke is complex, depending on many factors. With the knowledge that the small airway epithelium (SAE) is the earliest site of smoking-induced lung disease, and that the SAE gene expression is likely sensitive to inhaled cigarette smoke, we compared upper vs. lower lobe gene expression in the SAE within the same cigarette smokers to determine if the gene expression patterns were similar or different.
+  </div>
+  <a style="font-size: 11px;" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0072669#pone-0072669-g004">Click to view paper</a>
+</p>
+
+<p>
+<IMG BORDER="0" ALIGN="Left" SRC="http://bioinformatics.oxfordjournals.org/content/29/1/69/F1.large.jpg" style="width:40%; padding-right: 30px;">
+<div style="font-size: 10px;">
+<b>LOGICOIL—multi-state prediction of coiled-coil oligomeric state</b><br>
+This work introduces LOGICOIL, the first algorithm to address the problem of predicting multiple coiled-coil oligomeric states from protein-sequence information alone. By covering >90% of the known coiled-coil structures, LOGICOIL is a net improvement compared with other existing methods, which achieve a predictive coverage of ∼31% of this population. This leap in predictive power offers better opportunities for genome-scale analysis, and analyses of coiled-coil containing protein assemblies.</div>
+<a style="font-size: 11px;" href="http://bioinformatics.oxfordjournals.org/content/29/1/69.short">Click to view paper</a>
+</p>
+
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="http://bioinformatics.oxfordjournals.org/content/27/14/1908/F1.large.jpg" style="width:40%; padding-right: 30px;">
+  <div style="font-size: 10px;">
+    <b>SCORER 2.0: an algorithm for distinguishing parallel dimeric and trimeric coiled-coil sequences</b><br>
+    The predominant coiled-coil oligomer states in Nature are parallel dimers and trimers. Here, we improve and retrain the first-published algorithm, SCORER, that distinguishes these states, and test it against the current standard, MultiCoil. The SCORER algorithm has been revised in two key respects: first, the statistical basis for SCORER is improved markedly. Second, the training set for SCORER has been expanded and updated to include only structurally validated coiled coils. 
+  </div>
+  <a style="font-size: 11px;" href="http://bioinformatics.oxfordjournals.org/content/27/14/1908.short">Click to view paper</a>
+</p>
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/asbcd6/2012/asbcd6.2012.1.issue-6/sb300028q/production/images/medium/sb-2012-00028q_0006.gif" style="width:40%; padding-right: 30px;">
+  <div style="font-size: 10px;">
+    <b>A basis set of de novo coiled-coil peptide oligomers for rational protein design and synthetic biology</b><br>
+    Protein engineering, chemical biology, and synthetic biology would benefit from toolkits of peptide and protein components that could be exchanged reliably between systems while maintaining their structural and functional integrity. Ideally, such components should be highly defined and predictable in all respects of sequence, structure, stability, interactions, and function. To establish one such toolkit, we present a basis set of de novo designed α-helical coiled-coil peptide.
+  </div>
+  <a style="font-size: 11px;" href="http://pubs.acs.org/doi/abs/10.1021/sb300028q">Click to view paper</a>
+</p>
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="http://ars.els-cdn.com/content/image/1-s2.0-S0022283610009101-fx1.jpg" style="width:40%; padding-right: 30px">
+  <div style="font-size: 10px">
+    <b>The evolution and structure prediction of coiled coils across all genomes</b><br>
+    Coiled coils are α-helical interactions found in many natural proteins. Various sequence-based coiled-coil predictors are available, but key issues remain: oligomeric state and protein–protein interface prediction and extension to all genomes. We present SpiriCoil (http://supfam.org/SUPERFAMILY/spiricoil), which is based on a novel approach to the coiled-coil prediction problem for coiled coils that fall into known superfamilies: hundreds of hidden Markov models representing coiled-coil-containing domain families.
+  </div>
+  <a style="font-size: 11px;" href="http://www.sciencedirect.com/science/article/pii/S0022283610009101">Click to view paper</a>
+</p>
+
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="/img/Smith_Waterman_TSP_CC_idendity.png" style="width:40%; padding-right: 30px; height:190px">
+  <div style="font-size: 10px;">
+    <b>Prediction and analysis of higher-order coiled-coils: insights from proteins of the extracellular matrix, tenascins and thrombospondins</b><br>
+    LOGICOIL out-performed other algorithms in predicting trimerisation of these proteins and sequence analyses identified features associated with many other trimerising CCDs. The thrombospondins are a larger and more ancient family that includes sub-groups that assemble as trimers or pentamers. LOGICOIL predicted the pentamerising CCDs accurately. However, prediction of TSP trimerisation was relatively poor, although accuracy was improved by analyzing only the central regions of the CCDs. Sequence clustering and phylogenetic analyses grouped the TSP CCDs into three clades comprising trimers and pentamers from vertebrates, and TSPs from invertebrates. Sequence analyses revealed distinctive, conserved features that distinguish trimerising and pentamerising CCDs. Together, these analyses provide insight into the specification of higher-order CCDs that should direct improved CCD predictions and future experimental investigations of sequence-to-structure functional relationships..
+  </div>
+  <a style="font-size: 11px;" href="http://www.sciencedirect.com/science/article/pii/S1357272513002343">Click to view paper</a>
+</p>
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="" style="width:40%; padding-right: 30px;">
+  <div style="font-size: 10px;">
+    <b>Airway Basal Stem/Progenitor Cells Have Diminished Capacity to Regenerate Airway Epithelium in Chronic Obstructive Pulmonary Disease</b><br>
+  </div>
+  <a style="font-size: 11px;" href="http://www.atsjournals.org/doi/abs/10.1164/rccm.201406-1167LE?journalCode=ajrccm#.VXOO-2TBzGd">Click to view paper</a>
+</p>
+
+<p>
+  <IMG BORDER="0" ALIGN="Left" SRC="http://www.jbc.org/content/286/20/17512/F1.large.jpg" style="width:40%; padding-right: 30px;">
+  <div style="font-size: 10px;">
+    <b>Designed coiled coils promote folding of a recombinant bacterial collagen</b><br>
+    We propose that a single CC promotes folding of the CL domain via nucleation and in-register growth from one end, whereas initiation and growth from both ends in CC-CL-CC results in mismatched registers that frustrate folding. Bioinformatics analysis of natural collagens lends support to this because, where present, there is generally only one coiled-coil domain close to the triple helix, and it is nearly always N-terminal to the collagen repeat.
+  </div>
+  <a style="font-size: 11px;" href="http://www.jbc.org/content/286/20/17512.short">Click to view paper</a>
+</p>
 
 
