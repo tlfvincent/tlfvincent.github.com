@@ -5,6 +5,7 @@ description: "Me, myself and I"
 header-img: "img/about-bg.jpg"
 ---
 
+
 <style>
 .timeline {
   list-style: none;
@@ -201,6 +202,141 @@ img {
 }
 </style>
 
+
+
+<style>
+.photo-grid {
+  margin: 1em auto;
+  max-width: 1106px;
+  text-align: center;
+}
+
+.photo-grid li {
+  border: 5px solid white;
+  display: inline-block;
+  margin: 1em;
+  width: 289px;
+}
+
+.photo-grid img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.photo-grid figure {
+  height: 163px;
+  overflow: hidden;
+  position: relative;
+  width: 289px;
+}
+
+.photo-grid figcaption {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.photo-grid figcaption p {
+  display: table-cell;
+  font-size: 1.5em;
+  position: relative;
+  top: -40px;
+  width: 289px;
+  vertical-align: middle;
+}
+
+.photo-grid li:hover figcaption {
+  opacity: 1;
+}
+
+.photo-grid img {
+  display: block;
+  height: auto;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  max-width: 100%;
+}
+ 
+.photo-grid li:hover img {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  transform: scale(1.4);
+}
+
+.photo-grid figcaption p {
+  display: table-cell;
+  font-size: 1.5em;
+  position: relative;
+  top: -40px;
+  width: 289px;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  vertical-align: middle;
+}
+ 
+.photo-grid li:hover figcaption p {
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+
+.photo-grid figcaption {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  transition-delay: 100ms;
+  z-index: 100;
+}
+
+</style>
+
+
+<style>
+
+/*div.timeline-panel:hover {
+    background-color: yellow;
+}*/
+
+.timeline-date {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(29, 106, 154, 0.72);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: visibility opacity 0.2s;
+}
+
+div.timeline-panel:hover .timeline-date {
+  visibility: visible;
+  opacity: 1;
+}
+</style>
+
 <div class="container" style="width:100%">
     <div class="page-header">
     </div>
@@ -211,6 +347,7 @@ img {
             <div class="timeline-heading">
               <h4 class="timeline-title">Data Scientist</h4>
               <h5 class="timeline-title">Dow Jones</h5>
+              <p class="timeline-date">November 2014 - </p>
               <hr>
             </div>
             <div class="timeline-body">
@@ -224,6 +361,7 @@ img {
             <div class="timeline-heading">
               <h4 class="timeline-title">Fellow</h4>
               <h5 class="timeline-title">Insight Data Science</h5>
+              <p class="timeline-date">July 2014 - September 2014</p>
               <hr>
             </div>
             <div class="timeline-body">
@@ -289,19 +427,46 @@ img {
 
 <hr class="soft">
 
-<h2>  <center> Side Projects  </center> </h2>
+<h2> <center> Side Projects </center> </h2>
 
-<div>
-    <div class="imgContainer" style="margin: 30px;">
+<ul class="photo-grid">
+  <li>
+    <a href="https://statofmind.wordpress.com/">
+      <figure>
         <img src="/img/old_blog.png" class="circular" alt="" />
-        <p>This is image 1</p>
+        <figcaption><p>StatOfMind</p></figcaption>
+      </figure>
+    </a>
+  </li>
+  <li>
+    <a href="http://www.datakind.org/">
+      <figure>
+        <img src="/img/datakind.png" class="circular" alt="" />
+        <figcaption><p>DataKind</p></figcaption>
+      </figure>
+    </a>
+  </li>
+  <li><a href="http://milliondollarstory.me/">
+      <figure>
+        <img src="/img/milliondollarstory.png" class="circular" alt="" />
+        <figcaption><p>MillionDollar$tory</p></figcaption>
+      </figure>
+    </a>
+  </li>
+</ul>
+
+
+<!-- <div>
+    <div class="imgContainer" style="margin: 60px;">
+        <img src="/img/old_blog.png" class="circular" alt="" />
     </div>
 
-    <div class="imgContainer" style="margin: 30px;">
+    <div class="imgContainer" style="margin: 60px;">
         <img src="/img/datakind.png" class="circular" alt="" />
         <p>This is image 2</p>
     </div>
 </div>
+ -->
 
 
 
@@ -313,7 +478,7 @@ img {
   In a previous life, I spent my time developing statistical tools and libraries to help address questions relevant to the fields of Genetic Medicine and Protein Folding. During this time, I was able to contribute to a number of manuscripts that have been publised in peer-reviewed journals.
 </p>
 
-<p>
+<p >
   <IMG BORDER="0" ALIGN="Left" SRC="/img/journal_pone.png" style="width:40%; padding-right: 30px;">
   <div style="font-size: 10px;">
     <b>Smoking Dysregulates the Human Airway Basal Cell Transcriptome at COPD Risk Locus 19q13.2</b><br>
