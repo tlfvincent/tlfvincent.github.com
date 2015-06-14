@@ -7,18 +7,24 @@ author:     "Thomas Vincent"
 header-img: "img/post-bg-06.jpg"
 ---
 
-<p class="intro"><span class="dropcap">R</span>ecently, I have been involved in a number of projects that have required the use for neat interactive vizualization of networks. After strying out a few options, D3 quickly came out as the most logical and appealling choice. To paraphrase D3's home website *D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS*.</p>
+<p class="intro"  align="justify">
+Recently, I have been involved in a number of projects that have required the use for neat interactive vizualization of networks. After strying out a few options, D3 quickly came out as the most logical and appealling choice. To paraphrase D3's home website *D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS*.
 
 While D3 can be a tad wordy, and may have a realtively steep learning curve at the start, it becomes a dream to work with once you familiarize with it. If you run into a hurdle (and we always do), D3 has a vibrant community of users that have generously shared their knowledge (especially on StackOverflow). I feel like I have abused this generosity, so I figured I would try and share some snippets of the knowledge that I have accumulated during my short time with D3. For most of this post, I will be working with the standard miserables dataset.
+</p>
 
 ### A basic D3 force-directed network
+<p align="justify">
 For the sake of clarity, I wil omit the usual HTML wrappers, and get straight to the meaty D3 bit! First and foremost, we need to make sure we include the d3.js library:
+</p>
 
 {% highlight html %}
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {% endhighlight %}
 
+<p align="justify">
 We can also add some CSS styling to the nodes and links that will be displayed in our network and finally display the most basic D3 force directed network:
+</p>
 
 <p data-height="500" data-theme-id="0" data-slug-hash="XbMpGq" data-default-tab="result" data-user="tlfvincent" class='codepen'>See the Pen <a href='http://codepen.io/tlfvincent/pen/XbMpGq/'>XbMpGq</a> by Thomas Vincent (<a href='http://codepen.io/tlfvincent'>@tlfvincent</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
@@ -45,7 +51,9 @@ d3-tip {
 {% endhighlight %}
 
 ### Adding text labels to nodes
+<p align="justify">
 Usually, it is desirable to display attributes on the nodes, so people often like to add text information. This can be achieved by adding a few changes to the code shown above. Below is the new code chunk that needs to be modified:
+</p>
 
 <p data-height="500" data-theme-id="0" data-slug-hash="zGZZGJ" data-default-tab="result" data-user="tlfvincent" class='codepen'>See the Pen <a href='http://codepen.io/tlfvincent/pen/zGZZGJ/'>zGZZGJ</a> by Thomas Vincent (<a href='http://codepen.io/tlfvincent'>@tlfvincent</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
@@ -59,8 +67,9 @@ We can also add some styling to the displayed text by adding the following CSS:
 {% endhighlight %}
 
 
-
+<p align="justify">
 Obviously, a network with too many nodes becomes quickly unreadable once we add labels, so in this case it is preferable to resort to D3's tooltip functionnality, which allows us to display the desired properties whenever a user hovers over any given node.
+</p>
 
 
 ### Adding a hover functionality
@@ -70,7 +79,7 @@ In order to enable hovering over the nodes in your network, it is first necssary
 <script type='text/javascript' src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"> </script>
 {% endhighlight %}
 
-As usual, one can also add some CSS styling to hover tip.
+As usual, one can also add some CSS styling to the hover tip tool.
 
 {% highlight css linenos %}
 d3-tip {
