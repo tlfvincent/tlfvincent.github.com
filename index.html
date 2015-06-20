@@ -13,6 +13,9 @@ description: "A melting pot of statistics, machine learning and data vizualizati
             {{ post.subtitle }}
         </h3>
         {% endif %}
+        <!-- add post snippet -->
+        {{ post.content | strip_html | truncatewords:25}}<br>
+        <a href="{{ post.url }}">Read more...</a><br><br>
     </a>
     <p class="post-meta">Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}</p>
 </div>
