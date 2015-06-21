@@ -7,6 +7,8 @@ author:     "Thomas Vincent"
 header-img: "img/galaxy.jpg"
 ---
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 <style type="text/css">
 /*body{font-family: Arial, sans-serif;font-size:10px;}*/
   .axis path,.axis line {
@@ -42,31 +44,68 @@ I have been interested in the game flow and dynamics of NBA games for a while, a
 </p>
 
 <p align="justify">
-To start of with, I wrote a Python script that scraped all available play-by-play data for all games played between the seasons 2001-2014. The output was stored in a SQL database of ~450Mb, which translate to a 7,364,787 x 8 matrix when read in memory. With the data now available for analysis, we can proceed toowards producing some vizualizations of the data. First, I set out to explore the score differential for each team, which I figured would be an interesting proxy for overall performance. I began by looking at the average score differential that teams achieved when playing at home, and then when playing away. The two charts below show the clear benefits of playing on your home-court.
+To start of with, I wrote a Python script that scraped all available play-by-play data for all games played between the seasons 2001-2014. The output was stored in a SQL database of ~450Mb, which translate to a 7,364,787 x 8 matrix when read in memory. With the data now available for analysis, we can proceed toowards producing some vizualizations of the data. First, I set out to explore the score differential for each team, which I figured would be an interesting proxy for overall performance. In this blog post, I looked at the average number of points that teams were ahead/behind when they were playing at home or away.
 </p>
+
+Here, the *score differential* attributed to a team during any given season was simply calculated as the average score difference observed at every scoring event. More formally, we can write this as:
+
+$$ScoreDiff = \frac{\sum_{n=1}^{N} S_{n} - O_{n}}{N}$$
+
+where $$N$$ is the total number of scoring events played by a team at home or away, $$S_{i}$$ and $$O_{i}$$ are the scores for the home and away team at scoring event $$n$$, respectively. Therefore, a positive $$ScoreDiff$$ indicates that a team tends to be in the lead, while a negative $$ScoreDiff$$ indicates that teams tend to be behind. The first chart below shows the average score differential for teams playing on their home-court.
 
 <center>
   <h4> Average score differential for teams when playing at home</h4>
   <div id="home_performance_diff" style="text-align:left"> </div>
 </center>
 
-<br>
+<p align="justify">
+ One cool thing about these plots is that they allow to quickly see which teams have been consistently excellent at home. For example, we can see that the San Antonio Spurs and Dallas Mavericks are two teams that have achieved positive score differentials all the way from 2000 to 2014 when playing at home. Could it be a Texas thing?
+</p>
+
+<center>
+  <h4> Strong performance at home for the Spurs and Mavericks </h4>
+  <div id="home_performance_diff_best" style="text-align:left"> </div>
+</center>
+
+
+<p align="justify">
+Next, we can look at the score differentials achieved by teams playing away. In this case, we see that San Antonio is again the team that plays the best when away from home. Of the historically worst teams out there, we have New York, Toronto, Golden State and Utah.
+</p>
 
 <center>
   <h4> Average score differential for teams playing away</h4>
   <div id="away_performance_diff" style="text-align:left"> </div>
 </center>
 
-<p align="justify">
-I have seen a few examples online of gameflow charts that typically display score differential during the course of a game, which is interesting but somewhat limited. So in addition, 
-
-</p>
+<p></p>
 
 <center>
-  <h4> Time spent in the lead for teams playing away</h4>
-  <div id="home_lead_prop" style="text-align:left"> </div>
+  <h4> Worst performing teams away </h4>
+  <div id="away_performance_diff_worst" style="text-align:left"> </div>
 </center>
 
+
+
+<p align="justify">
+The charts below show the advantages that steams from teams playing on their home-court. Surisingly, the average score differential per season (both away and at home) was not correlated to how many wins were achieved by each team. This is clearly shown in the two plots below. I would guess that this is the due to the fact that many teams go on signifcant runs that may actually superseed the fact that they are not necessarily in the lead all the time.
+</p>
+
+<br>
+
+<center>
+  <h4> Correlation between home score differential and win shares </h4>
+  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/gfw7ozh4yf2xcn4/win_share_home_score_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</center>
+
+<center>
+  <h4> Correlation between away score differential and win shares </h4>
+  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/6kk972lw9o3vtpa/win_share_away_score_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+</center>
+
+
+<p align="justify">
+In this first part, I have looked at the average number of points that teams lead or trail across all games played in a season. I have actually seen other examples online of gameflow charts that typically display score differential during the course of a game. While this method of looking a game flow is interesting, it is somewhat limited. In the upcoming part of this blog series, I will look at scoring streaks, proportion of time in the lead, and largest leads.
+<p>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
@@ -821,6 +860,180 @@ var xScale = d3.scale.linear()
 
 
 
+
+
+<script>
+
+var data = {
+    "Dallas": [
+     {
+     "2001": 3.4838,
+    "2002": 3.0447,
+    "2003": 6.6566,
+    "2004": 5.0374,
+    "2005": 4.1149,
+    "2006":  5.639,
+    "2007": 6.3717,
+    "2008": 5.6607,
+    "2009": 3.5123,
+    "2010": 1.3395,
+    "2011": 3.8508,
+    "2012": 2.7928,
+    "2013": 0.9314,
+    "2014": 2.5114 
+    } 
+    ],
+    "San Antonio": [
+     {
+     "2001": 7.5205,
+    "2002": 7.1265,
+    "2003": 6.1498,
+    "2004":  7.533,
+    "2005": 7.8189,
+    "2006": 4.0508,
+    "2007": 5.4129,
+    "2008":  4.772,
+    "2009": 3.2531,
+    "2010": 5.3993,
+    "2011": 5.6683,
+    "2012": 6.3732,
+    "2013": 6.0511,
+    "2014": 6.0916 
+    } 
+    ]
+};
+
+var dataset = [];
+for (var key in data) {
+  if (data.hasOwnProperty(key)) {
+    tmp = {};
+    tmp['name'] = key;
+    tmp['diff'] = [];
+    //tmp['diff_abs'] = [];
+    for(var subkey in data[key][0]) {
+      tmp['diff'].push([subkey,
+                        Math.abs(data[key][0][subkey]).toFixed(1),
+                        data[key][0][subkey].toFixed(1)
+                        ]);
+      //tmp['diff'].push([subkey, data[key][0][subkey].toFixed(1)]);
+    }
+    dataset.push(tmp);
+  }
+}
+
+function truncate(str, maxLength, suffix) {
+  if(str.length > maxLength) {
+    str = str.substring(0, maxLength + 1); 
+    str = str.substring(0, Math.min(str.length, str.lastIndexOf(" ")));
+    str = str + suffix;
+  }
+  return str;
+}
+
+var margin = {top: 20, right: 200, bottom: 0, left: 20},
+  width = 650,
+  height = 80;
+
+var start_year = 2001,
+  end_year = 2014;
+
+var c = d3.scale.category20c();
+
+var x = d3.scale.linear()
+  .range([0, width]);
+
+var xAxis = d3.svg.axis()
+  .scale(x)
+  .orient("top");
+
+var formatYears = d3.format("0000");
+xAxis.tickFormat(formatYears);
+
+var svg = d3.select("#home_performance_diff_best").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .style("margin-left", margin.left + "px")
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+x.domain([start_year, end_year]);
+var xScale = d3.scale.linear()
+  .domain([start_year, end_year])
+  .range([0, width]);
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + 0 + ")")
+    .call(xAxis);
+
+  for (var j = 0; j < dataset.length; j++) {
+    var g = svg.append("g").attr("class","journal");
+
+    var circles = g.selectAll("circle")
+      .data(dataset[j]['diff'])
+      .enter()
+      .append("circle");
+
+    var text = g.selectAll("text")
+      .data(dataset[j]['diff'])
+      .enter()
+      .append("text");
+
+    var rScale = d3.scale.linear()
+      .domain([0, d3.max(dataset[j]['diff'], function(d) { return d[1]; })])
+      .range([2, 9]);
+
+    circles
+      .attr("cx", function(d, i) { return xScale(d[0]); })
+      .attr("cy", j*20+20)
+      .attr("r", function(d) { return rScale(d[1]); })
+      // .style("stroke", function(d) { 
+      //       if(d[2] < 0){return "red"}
+      //       else {return "blue"};
+      // })
+      // .style("stroke-width", function(d) { return 3; })
+      //.style("opacity", .8)
+      .style("fill", function(d) { 
+            if(d[2] < 0){return "#b24747"}
+            else {return "#000099"};
+      });
+      //.style("fill", function(d) { return c(j); });
+
+    text
+      .attr("y", j*20+25)
+      .attr("x",function(d, i) { return xScale(d[0])-5; })
+      .attr("class","value")
+      .text(function(d){ return d[2]; })
+      .style("fill", function(d) { 
+            if(d[2] < 0){return "#b24747"}
+            else {return "#000099"};
+      })
+      //.style("fill", function(d) { return c(j); })
+      .style("display","none");
+
+    g.append("text")
+      .attr("y", j*20+25)
+      .attr("x",width+20)
+      .attr("class","label")
+      .text(truncate(dataset[j]['name'],30,"..."))
+      .style("fill", function(d) { return c(j); })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+  };
+
+  function mouseover(p) {
+    var g = d3.select(this).node().parentNode;
+    d3.select(g).selectAll("circle").style("display","none");
+    d3.select(g).selectAll("text.value").style("display","block");
+  }
+
+  function mouseout(p) {
+    var g = d3.select(this).node().parentNode;
+    d3.select(g).selectAll("circle").style("display","block");
+    d3.select(g).selectAll("text.value").style("display","none");
+  }
+
+</script>
 
 
 
@@ -1579,3 +1792,234 @@ var xScale = d3.scale.linear()
 </script>
 
 
+
+
+
+<script>
+
+var data = 
+{
+"Golden State": [
+ {
+ "2001": 7.7329,
+"2002": 4.9375,
+"2003": 2.8427,
+"2004": 2.7589,
+"2005": 1.6683,
+"2006": 3.4501,
+"2007": 3.5304,
+"2008": 0.22123,
+"2009": 4.3605,
+"2010": 4.0907,
+"2011": 4.9861,
+"2012": 2.1427,
+"2013": 1.6024,
+"2014": -1.1038 
+} 
+],
+"New York": [
+ {
+ "2001": 1.5421,
+"2002":  2.935,
+"2003":  1.763,
+"2004": 2.2129,
+"2005": 2.8243,
+"2006": 5.4158,
+"2007": 3.7706,
+"2008": 5.7037,
+"2009": 2.0548,
+"2010": 6.7945,
+"2011": 0.50562,
+"2012":  1.127,
+"2013": 1.2231,
+"2014": 0.54186 
+} 
+],
+"Sacramento": [
+ {
+ "2001": -0.28032,
+"2002": -1.4345,
+"2003": -0.67925,
+"2004": 0.49045,
+"2005": 1.3663,
+"2006": 0.41917,
+"2007": 2.8956,
+"2008": 3.8501,
+"2009": 6.1794,
+"2010": 4.6618,
+"2011": 3.3928,
+"2012": 4.5396,
+"2013": 5.8496,
+"2014": 3.5641 
+} 
+],
+"Toronto": [
+ {
+ "2001": -0.16744,
+"2002": 2.1296,
+"2003": 4.3699,
+"2004": 3.5958,
+"2005": 3.3948,
+"2006": 2.7745,
+"2007": 2.0714,
+"2008": 0.39461,
+"2009": 3.4359,
+"2010": 1.6439,
+"2011": 5.9239,
+"2012": 3.6005,
+"2013": 1.8078,
+"2014": -0.14248 
+} 
+],
+"Utah": [
+ {
+ "2001": 0.027564,
+"2002": 1.6352,
+"2003": 2.0157,
+"2004": 3.0913,
+"2005": 3.9013,
+"2006": 3.3136,
+"2007": 0.76312,
+"2008": 0.64692,
+"2009": 2.8708,
+"2010": -0.069633,
+"2011":   5.67,
+"2012": 1.9202,
+"2013": 3.6472,
+"2014": 6.8565 
+} 
+]
+};
+
+
+var dataset = [];
+for (var key in data) {
+  if (data.hasOwnProperty(key)) {
+    tmp = {};
+    tmp['name'] = key;
+    tmp['diff'] = [];
+    //tmp['diff_abs'] = [];
+    for(var subkey in data[key][0]) {
+      tmp['diff'].push([subkey,
+                        Math.abs(data[key][0][subkey]).toFixed(1),
+                        -data[key][0][subkey].toFixed(1)
+                        ]);
+      //tmp['diff'].push([subkey, data[key][0][subkey].toFixed(1)]);
+    }
+    dataset.push(tmp);
+  }
+}
+
+function truncate(str, maxLength, suffix) {
+  if(str.length > maxLength) {
+    str = str.substring(0, maxLength + 1); 
+    str = str.substring(0, Math.min(str.length, str.lastIndexOf(" ")));
+    str = str + suffix;
+  }
+  return str;
+}
+
+var margin = {top: 20, right: 200, bottom: 0, left: 20},
+  width = 650,
+  height = 140;
+
+var start_year = 2001,
+  end_year = 2014;
+
+var c = d3.scale.category20c();
+
+var x = d3.scale.linear()
+  .range([0, width]);
+
+var xAxis = d3.svg.axis()
+  .scale(x)
+  .orient("top");
+
+var formatYears = d3.format("0000");
+xAxis.tickFormat(formatYears);
+
+var svg = d3.select("#away_performance_diff_worst").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .style("margin-left", margin.left + "px")
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+x.domain([start_year, end_year]);
+var xScale = d3.scale.linear()
+  .domain([start_year, end_year])
+  .range([0, width]);
+
+  svg.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + 0 + ")")
+    .call(xAxis);
+
+  for (var j = 0; j < dataset.length; j++) {
+    var g = svg.append("g").attr("class","journal");
+
+    var circles = g.selectAll("circle")
+      .data(dataset[j]['diff'])
+      .enter()
+      .append("circle");
+
+    var text = g.selectAll("text")
+      .data(dataset[j]['diff'])
+      .enter()
+      .append("text");
+
+    var rScale = d3.scale.linear()
+      .domain([0, d3.max(dataset[j]['diff'], function(d) { return d[1]; })])
+      .range([2, 9]);
+
+    circles
+      .attr("cx", function(d, i) { return xScale(d[0]); })
+      .attr("cy", j*20+20)
+      .attr("r", function(d) { return rScale(d[1]); })
+      // .style("stroke", function(d) { 
+      //       if(d[2] < 0){return "red"}
+      //       else {return "blue"};
+      // })
+      // .style("stroke-width", function(d) { return 1; })
+      // .style("opacity", .5)
+      .style("fill", function(d) { 
+            if(d[2] < 0){return "#b24747"}
+            else {return "#000099"};
+      });
+      //.style("fill", function(d) { return c(j); });
+
+    text
+      .attr("y", j*20+25)
+      .attr("x",function(d, i) { return xScale(d[0])-5; })
+      .attr("class","value")
+      .text(function(d){ return d[2]; })
+      .style("fill", function(d) { 
+            if(d[2] < 0){return "#b24747"}
+            else {return "#000099"};
+      })
+      //.style("fill", function(d) { return c(j); })
+      .style("display","none");
+
+    g.append("text")
+      .attr("y", j*20+25)
+      .attr("x",width+20)
+      .attr("class","label")
+      .text(truncate(dataset[j]['name'],30,"..."))
+      .style("fill", function(d) { return c(j); })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
+  };
+
+  function mouseover(p) {
+    var g = d3.select(this).node().parentNode;
+    d3.select(g).selectAll("circle").style("display","none");
+    d3.select(g).selectAll("text.value").style("display","block");
+  }
+
+  function mouseout(p) {
+    var g = d3.select(this).node().parentNode;
+    d3.select(g).selectAll("circle").style("display","block");
+    d3.select(g).selectAll("text.value").style("display","none");
+  }
+
+</script>
