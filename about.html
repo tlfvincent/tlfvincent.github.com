@@ -312,6 +312,116 @@ img {
 </style>
 
 
+
+<style>
+.photo-grid-2 {
+  margin: 1em auto;
+  max-width: 1106px;
+  text-align: center;
+}
+
+.photo-grid-2 li {
+  border: 5px solid white;
+  display: inline-block;
+  margin: 1em;
+  width: 289px;
+}
+
+.photo-grid-2 img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.photo-grid-2 figure {
+  height: 289px;
+  overflow: hidden;
+  position: relative;
+  width: 289px;
+}
+
+
+.photo-grid-2 figcaption {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.photo-grid-2 figcaption p {
+  display: table-cell;
+  font-size: 1.5em;
+  position: relative;
+  top: -40px;
+  width: 289px;
+  vertical-align: middle;
+}
+
+.photo-grid-2 li:hover figcaption {
+  opacity: 1;
+}
+
+.photo-grid-2 img {
+  display: block;
+  height: auto;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  max-width: 100%;
+}
+ 
+.photo-grid-2 li:hover img {
+  -webkit-transform: scale(1.4);
+  -moz-transform: scale(1.4);
+  transform: scale(1.4);
+}
+
+.photo-grid-2 figcaption p {
+  display: table-cell;
+  font-size: 1.5em;
+  position: relative;
+  top: -40px;
+  width: 289px;
+  -webkit-transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+  vertical-align: middle;
+}
+ 
+.photo-grid-2 li:hover figcaption p {
+  -moz-transform: translateY(40px);
+  -webkit-transform: translateY(40px);
+  transform: translateY(40px);
+}
+
+.photo-grid-2 figcaption {
+  background: rgba(0,0,0,0.8);
+  color: white;
+  display: table;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+  -webkit-transition-delay: 100ms;
+  -moz-transition-delay: 100ms;
+  transition-delay: 100ms;
+  z-index: 100;
+}
+
+</style>
+
+
 <style>
 
 /*div.timeline-panel:hover {
@@ -430,8 +540,9 @@ div.timeline-panel:hover .timeline-date {
     </ul>
 </div>
 
-<hr class="soft">
 
+
+<hr class="soft">
 <h2> <center> Side Projects </center> </h2>
 
 <ul class="photo-grid">
@@ -461,18 +572,31 @@ div.timeline-panel:hover .timeline-date {
 </ul>
 
 
-<!-- <div>
-    <div class="imgContainer" style="margin: 60px;">
-        <img src="/img/old_blog.png" class="circular" alt="" />
-    </div>
+<hr class="soft">
+<h2> <center> In Press </center> </h2>
 
-    <div class="imgContainer" style="margin: 60px;">
-        <img src="/img/datakind.png" class="circular" alt="" />
-        <p>This is image 2</p>
-    </div>
-</div>
- -->
+<p style="font-size: 14px;">
+  As part of my current position as Data Scientist at Dow Jones, I have the fantastic opportunity to regularly collaborate on NewsRoom project with reporters and editors of the Wall Street Journal. Here are a few examples of some publised work.
+</p>
 
+<ul class="photo-grid-2">
+  <li>
+    <a href="http://graphics.wsj.com/elections/2016/republican-debate-charts/">
+      <figure>
+        <img src="/img/first_republican_debate.png" class="circular" alt="" height="300"/>
+        <figcaption><p>First republican debate 2015</p></figcaption>
+      </figure>
+    </a>
+  </li>
+  <li>
+    <a href="http://graphics.wsj.com/elections/2016/second-republican-debate-charts/">
+      <figure>
+        <img src="/img/second_republican_debate.png" class="circular" alt="" />
+        <figcaption><p>Second republican debate 2015</p></figcaption>
+      </figure>
+    </a>
+  </li> 
+</ul>
 
 
 <hr class="soft">
