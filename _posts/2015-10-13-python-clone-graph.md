@@ -24,7 +24,7 @@ Clone an undirected graph. Each node in the graph contains a label and a list of
 
 Like most algorithms & data structures problems, there are usually many variants to solving this problem, but here I will go through the solution that is most typically reported. To begin, it is generally good form to define a `Node` class:
 
-{% highlight R linenos %} 
+{% highlight python linenos %} 
 class Node:
     '''
     Define a node class for our undirected graph
@@ -36,7 +36,7 @@ class Node:
 
 You can test the `Node` class in your Python interpreter as below (although this would never be considered a test per-se if we are talking in engineering terms!)
 
-{% highlight R linenos %} 
+{% highlight python linenos %} 
 >>> test_node = Node('test')
 >>> print test_node.label
 test
@@ -46,7 +46,7 @@ test
 
 Finally, we can define the `Solution` class, which will allow us to clone any graph given that we are provided at least one of its node:
 
-{% highlight R linenos %} 
+{% highlight python linenos %} 
 class Solution:
     '''
     Clone undirected graph
