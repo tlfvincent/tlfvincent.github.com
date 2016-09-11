@@ -202,12 +202,10 @@ The source code for the full web app can be found at the [following GitHub repos
 By cloning this [Github directory](https://github.com/tlfvincent/political_liars) and typing the commands below, you will be able to have a fully working web app.
 
 {% highlight bash %}
-### Note the above
-
-# first command
+# build Docker container with tag name pol_app
 docker build -t pol_app .
 
-# second command
+# run Docker container and mirror port 3838
 docker run -p 3838:3838 -t pol_app
 {% endhighlight %}
 <sub> Note: the above was tested on a Ubuntu machine hosted on DigitlOcean, I'm assuming you will have to slightly tweak things when working on a local machine (i.e. if using something like Boot2Docker.</sub>
