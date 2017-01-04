@@ -4,7 +4,7 @@ title: "Language propensity across the globe"
 subtitle:   "Just trying to make bubble charts cool again"
 date:       2015-06-07
 author:     "Thomas Vincent"
-header-img: "img/post-bg-06.jpg"
+header-img: "img/galaxy.jpg"
 ---
 
 <p align="justify">
@@ -12,7 +12,8 @@ I recently came across this <a href="http://www.scmp.com/infographics/article/18
 </p>
 
 <h4> CSS styling </h4>
-{% highlight css linenos %} 
+
+{% highlight sh %}
 <style type="text/css">
 
     text {
@@ -50,8 +51,9 @@ I recently came across this <a href="http://www.scmp.com/infographics/article/18
 {% endhighlight %}
 
 
+
 <h4> Javascript code </h4>
-{% highlight javascript linenos %}
+{% highlight sh %}
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 
@@ -64,6 +66,8 @@ var w = 1280,
     y = d3.scale.linear().range([0, r]),
     node,
     root;
+
+var color = d3.scale.category20c();
 
 var pack = d3.layout.pack()
     .size([r, r])
@@ -187,6 +191,7 @@ var data = {
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
       .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { return color(d.name); })
       .on("click", function(d) { return zoom(node == d ? root : d); });
 
   vis.selectAll("text")
@@ -267,7 +272,7 @@ var data = {
 
 Finally, make sure to include the following container in which to define you SVG.
 
-{% highlight html linenos%}
+{% highlight sh %}
 <div id="bubble_chart" style="text-align:left"> </div>
 {% endhighlight %}
 
@@ -289,6 +294,8 @@ var w = 1280,
     y = d3.scale.linear().range([0, r]),
     node,
     root;
+
+var color = d3.scale.category20c();
 
 var pack = d3.layout.pack()
     .size([r, r])
@@ -412,7 +419,10 @@ var data = {
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
       .attr("r", function(d) { return d.r; })
+      .style("fill", function(d) { return color(d.name); })
       .on("click", function(d) { return zoom(node == d ? root : d); });
+
+
 
   vis.selectAll("text")
       .data(nodes)
