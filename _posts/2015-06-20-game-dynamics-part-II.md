@@ -59,7 +59,7 @@ Using the definition above, I looked at lead propensity scores for teams playing
 
 <center>
    <h4> Lead propensity scores for teams playing at home</h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/oeg33cm6t4p62wx/home_lead_prop.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/home_lead_prop.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 <p align="justify">
@@ -68,13 +68,13 @@ The same observation holds for lead propensity scores of teams playing away. Aga
 
 <center>
   <h4> Lead propensity scores teams playing away</h4>
-    <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/05ymcqv1tfgeg31/away_lead_prop.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/away_lead_prop.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 Finally, we can look at the differences in lead propensity scores when playing at home and away.
 
 <center>
   <h4> Difference in lead propensity scores when playing at home and away</h4>
-    <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/ya6gae1xlamp9eq/lead_prop_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/lead_prop_diff.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 

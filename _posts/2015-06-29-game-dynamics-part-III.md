@@ -76,7 +76,7 @@ Using the above, I looked at scoring streaks for teams playing at home and away 
 
 <center>
    <h4> Average maximal scoring streak per game for teams playing at home</h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/wemn7zcx1r4wtno/home_scoring_streak.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/home_scoring_streak.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 <p align="justify">
@@ -85,12 +85,12 @@ The same observation holds for lead propensity scores of teams playing away: sco
 
 <center>
   <h4> Average maximal scoring streak per game teams playing away</h4>
-    <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/1yz2s7mhp7qctn4/away_scoring_streak.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/away_scoring_streak.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 Finally, we can look at the differential in average maximal scoring streak per game when teams play at home or away.
 
 <center>
   <h4> Difference in maximal scoring streaks per game when playing at home and away</h4>
-    <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/gz108h9hmndeten/scoring_streak_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+    <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/scoring_streak_diff.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>

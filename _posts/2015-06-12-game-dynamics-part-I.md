@@ -94,12 +94,12 @@ The charts below show the advantages that steams from teams playing on their hom
 
 <center>
   <h4> Correlation between home score differential and win shares </h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/gfw7ozh4yf2xcn4/win_share_home_score_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/win_share_home_score_diff.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 <center>
   <h4> Correlation between away score differential and win shares </h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/6kk972lw9o3vtpa/win_share_away_score_diff.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/win_share_away_score_diff.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 
