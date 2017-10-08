@@ -28,6 +28,7 @@ In this post, I looked at the SportVu data available for all NBA players active 
 
 {% highlight python %}
 # import required libraries for scraping and analysis
+
 import urllib2
 import json
 import pandas as pd
@@ -43,6 +44,7 @@ from sklearn import (manifold, datasets, decomposition, ensemble, lda,
 
 {% highlight python %}
 # define endpoints from stats.nba.com that we wish to scrape
+
 addressList = {
     "pullup_address": "http://stats.nba.com/js/data/sportvu/2014/pullUpShootData.json",
     "drives_address": "http://stats.nba.com/js/data/sportvu/2014/drivesData.json",
@@ -56,6 +58,7 @@ addressList = {
     }
 
 # download and format SportVu data, data for each endpoint is placed in a dictionnary
+
 sportsvu_data = {}
 for key, val in addressList.items():
     print key
@@ -74,6 +77,7 @@ for key, val in addressList.items():
 
 {% highlight python %}
 # concatenate all sportsvu data
+
 sportvu = None
 for suffix, input_df in sportsvu_data.items():
     print suffix
@@ -89,20 +93,24 @@ for suffix, input_df in sportsvu_data.items():
 
 {% highlight python %}
 # filter out dataframe to players who have had relevant playing time
+
 df = sportvu
 df = df[df.pullup_address_GP >= 41]
 df = df[df.pullup_address_MIN >= 15]
 
 # set index of final dataframe
+
 df_final = df.T.drop_duplicates().T.reset_index()
 df_final = df_final.set_index(['PLAYER_ID', 'TEAM_ABBREVIATION', 'pullup_address_PLAYER'])
 
 # remove those columns because they are redundant
+
 cols_to_remove = ['pullup_address_FIRST_NAME', 'pullup_address_LAST_NAME',
                   'pullup_address_GP', 'pullup_address_MIN']
 df_final.drop(cols_to_remove, axis=1, inplace=True)
 
 # remove duplicate columns
+
 df_final = df.T.drop_duplicates().T
 {% endhighlight %}
 
@@ -114,6 +122,7 @@ With the data now in our hands (or RAM), we can proceed to the original intent o
 {% highlight python %}
 # compute the correlation matrix between SportsVu metrics for all NBA players
 # note: Pearson or Spearman showed little differences in results
+
 df_final = df_final.convert_objects(convert_numeric=True)
 df_final = df_final.astype(float)
 corr = df_final.T.corr()
@@ -122,6 +131,7 @@ X = corr.as_matrix()
 
 {% highlight python %}
 # perform t-SNE dimensionality reduction and print to file
+
 X_reduced = TruncatedSVD(n_components=10, random_state=0).fit_transform(X)
 tsne = manifold.TSNE(n_components=2, perplexity=40, verbose=2)
 X_tsne = tsne.fit_transform(X_reduced)
@@ -138,6 +148,7 @@ The advantage of using t-SNE in this context is that we are effectively taking a
 
 {% highlight R %}
 # import required R libraries
+
 library(data.table)
 library(scatterD3)
 library(d3heatmap)
@@ -146,6 +157,7 @@ library(ggrepel)
 library(htmlwidgets)
 
 # read in tsne representations
+
 dt <- fread('tsne_clusters.csv', header=TRUE)
 dt <- dt[team!='TOTAL']
 {% endhighlight %}
@@ -153,6 +165,7 @@ dt <- dt[team!='TOTAL']
 {% highlight R %}
 # Use k-means to uncover natural clusters of players
 # Compute sum of squares for different values of k
+
 wss <- c()
 for (i in 1:15) {
 wss <- c(wss, sum(kmeans(dt[, list(x, y)], centers=i)$withinss))
@@ -160,11 +173,13 @@ wss <- c(wss, sum(kmeans(dt[, list(x, y)], centers=i)$withinss))
 
 # plot sum of squares as a function of cluster count in order
 # to find the "elbow". Optimal cluster count was found to be 7
+
 plot(1:15, wss, type="b",
      xlab="Number of Clusters",
      ylab="Within groups sum of squares")
 
 # add cluster assigments to data.table object
+
 cl <- kmeans(dt[, list(x, y)], centers=7)
 positions <- c('Shooting Guard', 'Dynamic C/PF',
                'Slow C/PF', 'Dynamic SF/PF',
@@ -175,6 +190,7 @@ dt[, 'position' := positions[dt$cluster]]
 
 {% highlight R %}
 # plot and save interactive D3 scatter plot
+
 tooltips <- paste("<strong>", dt$player,"</strong><br /><strong>", dt$team, "</strong><br />")
 p <- scatterD3(x = dt$x,
           y = dt$y,
@@ -213,6 +229,7 @@ By summing distances between pairs of players that are most similar in each team
 
 {% highlight R %}
 # get point-point distance between teams
+
 'point_distance' <- function(p1, p2) {
     dx = (p1[1] - p2[1])^2
     dy = (p1[2] - p2[2])^2
