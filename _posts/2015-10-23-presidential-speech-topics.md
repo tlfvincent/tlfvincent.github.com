@@ -406,7 +406,7 @@ dyAnnotation("1970-1-1", text = "Vietnam") %>%
 
 <center>
    <h4>Tracking and visualizing topics propensity over time</h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/4255cuev1g22krm/topics_by_time.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/topics_by_time.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 

@@ -1,3 +1,9 @@
+# External gems
+gems:
+  - jekyll-archives # Sorry, not GitHub pages friendly!
+  - jekyll-sitemap
+  - jekyll-paginate
+
 # Site settings
 title: StatOfMind
 header-img: img/galaxy.jpg

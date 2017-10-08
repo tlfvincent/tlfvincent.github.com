@@ -18,7 +18,7 @@ As a resident of NYC, and someone who has mayny times complained abut going to f
 
 <center>
    <h4>A map of elevators in NYC</h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/hto5nm82y2z0wze/elevator_map_nyc.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/elevator_map_nyc.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 

@@ -19,7 +19,7 @@ It is my intention to start playing around with a lot of the data they have made
 
 <center>
    <h4>A map of USA prisons</h4>
-  <iframe width="900" height="600" src="https://dl.dropboxusercontent.com/s/pqk6wa43zoq9sxv/prison_map_usa.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="900" height="600" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/prison_map_usa.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
 

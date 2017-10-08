@@ -17,7 +17,6 @@ header-img: "img/galaxy.jpg"
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 
-
 ___
 
 
@@ -196,8 +195,9 @@ The plot below shows the natural groupings of players, where the shape represent
 
 <center>
    <h4>NBA player similarity</h4>
-  <iframe width="1200" height="1000" marginwidth="0" src="https://dl.dropboxusercontent.com/s/ix13aev8ofo5cyb/nba_player_similarity.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="1200" height="1000" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/nba_player_similarity.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
+
 
 Upon investigation, we can see that this approach makes a lot of sense. For example, players such as Damian Lillard, Mario Chalmers, Eric Bledsoe or Derick Rose are very to each other in space. There are many other examples like this (Serge Ibaka and Lamarcus Aldridge; Jimmy Butler and Andre Iguodola) but it is interesting to note how the shooting and point guard have well-defined positions, whereas the Center, Power Forward and Small Forward positions show a lot more heterogeneity and complexity. There are some mis-assignments here and there but these tend to be on the boundary of clusters, which could be probably be fixed after some further optimization and tinkering of the cluster assignments. 
 
@@ -247,6 +247,6 @@ saveWidget(p, file='nba_team_similarity.html')
 
 <center>
    <h4>NBA team roster similarity</h4>
-  <iframe width="800" height="800" marginwidth="0" src="https://dl.dropboxusercontent.com/s/qab6dhw7oa6bxk6/nba_team_similarity.html?dl=0" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+  <iframe width="800" height="800" src="https://statofmind-blog.nyc3.digitaloceanspaces.com/images/nba_team_similarity.html" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 </center>
 
