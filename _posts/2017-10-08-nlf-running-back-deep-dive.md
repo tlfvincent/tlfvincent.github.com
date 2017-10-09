@@ -18,9 +18,8 @@ The `nflscrapR` essentiallys surfaces all play-by-play data for the last 7 seaso
 ### 1. Prerequisites
 In order to reproduce the figures below, wou will need to have `R` (v3.2.3 or above) installed on your machine. There are also a couple of additional libraries that will be required. Details on how to install those are shown in the commands below.
 
-{% highlight R %}
+{% highlight python %}
 # install.packages('devtools')
-
 library(devtools)
 
 #> Skipping install for github remote, the SHA1 (05815ef8) has not changed since last install.
@@ -32,16 +31,14 @@ devtools::install_github(repo = "maksimhorowitz/nflscrapR", force=TRUE)
 ### 2 Collecting the Data
 With the `nflscrapR` library now installed, you are now ready to collect play-by-play data for the 2016-2017 NFL season. Start by loading the library and collect the data using the command below:
 
-{% highlight R %}
+{% highlight python %}
 # Load the package
-
 library(nflscrapR)
 library(ggplot2)
 library(dplyr)
 library(pheatmap)
 
 # Collect data for 2016 NFL season
-
 pbp_2016 <- season_play_by_play(2016)
 {% endhighlight %}
 
