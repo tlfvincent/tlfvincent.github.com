@@ -60,7 +60,6 @@ rushing_stats <- pbp_2016 %>%
                  filter(PlayType == 'Run' & Rusher %in% rush_cnt$Rusher & Yards.Gained <=50) %>%
                  filter(down!=4 & !is.na(down)) %>%
                  filter(!is.na(RunLocation))
-
 {% endhighlight %}
 
 Altogether, we find that a total of 19 players rushed over 200 times during the 2016-2017 season. A short summary of their performance is show below.
