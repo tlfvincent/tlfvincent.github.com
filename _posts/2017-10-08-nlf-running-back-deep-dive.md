@@ -101,7 +101,7 @@ usage_stats <- pbp_2016 %>% filter(!is.na(down) & Rusher %in% rush_cnt$Rusher & 
 
 We can then leverage the `d3heatmap` to quickly generate a simple heatmap of how often running backs are used during specific downs and quarters.
 
-{% highlight  %}
+{% highlight python %}
 library(d3heatmap)
 
 # pivot dataframe
