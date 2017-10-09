@@ -44,9 +44,8 @@ pbp_2016 <- season_play_by_play(2016)
 
 Overall the `pbp_2016` dataframe contains 100 data points for 45,737 plays, but for the purpose of this post, we will be focussing exclusively on fields related to running backs (In future posts, we will explore data relevant to other positions on the football field). In addition, we'll focus primarily on frequently used running backs, which we empirically define as any player that has had at least 200 rushes over the course of the 2016-2017 season. 
 
-{% highlight R %}
+{% highlight python %}
 # Get all players with at least 200 rushes during the season
-
 min_rush_cnt <- 200
 rush_cnt <- pbp_2016 %>% filter(PlayType == 'Run') %>%
                          group_by(Rusher) %>% 
@@ -57,7 +56,6 @@ rush_cnt <- pbp_2016 %>% filter(PlayType == 'Run') %>%
                          arrange(desc(rush_cnt))
 
 # Get all rushing data for eligible players
-
 rushing_stats <- pbp_2016 %>%
                  filter(PlayType == 'Run' & Rusher %in% rush_cnt$Rusher & Yards.Gained <=50) %>%
                  filter(down!=4 & !is.na(down)) %>%
@@ -75,9 +73,8 @@ Altogether, we find that a total of 19 players rushed over 200 times during the 
 ### 3. Who are the most consistent and productive running backs?
 When talking about the overall performance of running backs, it is common for people to report the total number of yards that were rushed for, or the average yards per run. While these are perfectly acceptable numbers to share, I've always felt like they did not tell the whole story. For example, a player could have a high average yards per run, only for us to realize that he actually often loses yards on a run but makes up for it with a few very long runs. Therefore, I started by looking at the overall distribution of number of yards gained/lost for each play, with the hope that this would reveal whether some players were more consistent on a play-by-play basis than others. We can use the `ggplot2` library to generate a density plot of yards gained per play for each of our eligible players:
 
-{% highlight R %}
+{% highlight python %}
 # Compare distribution of rushes for eligible players
-
 ggplot(rushing_stats, aes(x = Yards.Gained, y = Rusher, fill=Rusher)) +
        geom_joy(scale = 3) +
        theme_joy() +
@@ -95,37 +92,31 @@ Overall, we see that most running backs have a similar distribution of yards gai
 ### 4. When are running backs used?
 Another statement that is also commonly reported is that running backs are primarily used in early downs. To verify whether this is generall true, we can compute the total amount of runs that each player made across different downs, and go even further by breaking this down by quarter too. The code chunk below counts the number of runs that each rushing back made during pairs of downs and quarters.
 
-{% highlight R %}
+{% highlight python %}
 # Compare when rushers are used
-
 usage_stats <- pbp_2016 %>% filter(!is.na(down) & Rusher %in% rush_cnt$Rusher & qtr!=5) %>%
                              group_by(Rusher, down, qtr) %>%
                              summarise(cnt = n()) %>%
                              mutate(qtr_down = paste("Q", qtr, "- Down: ", down, sep=""))
-
 {% endhighlight %}
 
 We can then leverage the `d3heatmap` to quickly generate a simple heatmap of how often running backs are used during specific downs and quarters.
 
-{% highlight R %}
+{% highlight  %}
 library(d3heatmap)
 
 # pivot dataframe
-
 usage <- usage_stats %>% dcast(Rusher ~ qtr_down, value.var = "cnt")
 
 # clean data
-
 row.names(usage) <- usage$Rusher
 usage <- usage %>% select(-Rusher)
 usage[is.na(usage)] <- 0
 
 # normalize data
-
 usage_norm <- t(apply(usage, 1, function(x) x/sum(x)))
 
-# Plot heatmap of proportions of rushes by different field locations and gaps
-
+# plot heatmap of proportions of rushes by different field locations and gaps
 p <- d3heatmap(usage_norm,
                colors="Blues",
                Colv=FALSE,
@@ -147,9 +138,8 @@ In the plot above, we are essentially plotting the usage of each running back as
 
 Another question we can ask ourselves is whether some running backs perform better on later downs. To visualize this data, we can again generate a density plot of yards gained per play for each of our eligible players, while also facetting the data by downs.
 
-{% highlight R %}
+{% highlight python %}
 # Compare distribution of rushes by downs
-
 ggplot(rushing_stats, aes(x = Yards.Gained, y = down)) +
        geom_joy(scale=1, rel_min_height=.03, fill='black') +
        scale_y_discrete(expand = c(0.01, 0)) +
@@ -168,7 +158,7 @@ Again, we do not see any striking differences between players and the distributi
 
 It is fairly well accepted that the performance of a running back will be heavily influenced by the strength of the offensive line in front of them. With that in mind, let's start by looking at the field location in which different running backs prefer to run. The plot below shows the number of yards gained by each running back based on which side of the field they ran towards (left, middle or right).
 
-{% highlight R %}
+{% highlight python %}
 ggplot(data=rushing_stats, aes(x=RunLocation, y=Yards.Gained, color=RunLocation)) +
        geom_jitter(position=position_jitter(0.2)) +
        stat_summary(fun.data=mean_sdl, mult=1, 
@@ -181,9 +171,8 @@ ggplot(data=rushing_stats, aes(x=RunLocation, y=Yards.Gained, color=RunLocation)
 
 We can take this further by looking at the field location in which different running backs prefer to run. This can be achieved by generating a matrix that contains the proportion of rushes by field location for each player.
 
-{% highlight R %}
+{% highlight python %}
 # Get proportions of rushes on different field locations
-
 rush_locations <- rushing_stats %>% filter(PlayType=='Run') %>%
                                     filter(!is.na(RunLocation)) %>%
                                     group_by(Rusher, RunLocation) %>%
@@ -197,9 +186,8 @@ loc_mat <- loc_mat %>% select(-Rusher)
 
 The content of the `loc_mat` matrix contains the preferred rush locations of each running back, and can be plotted as a clustered heatmaps using the `pheatmap` library in `R`.
 
-{% highlight R %}
+{% highlight python %}
 # Plot heatmap of proportions of rushes by different field locations
-
 pheatmap(loc_mat, border="white", color = brewer.pal(9,"Blues"), cluster_cols=FALSE)
 {% endhighlight %}
 
@@ -212,7 +200,7 @@ The plot above highlights which running back are most similar in their run locat
 
 We can also explore the number of yards gained by each running back based on the offensive line positions that created space for them.
 
-{% highlight R %}
+{% highlight python %}
 ggplot(data=rushing_stats %>% filter(!is.na(RunGap)), aes(x=RunGap, y=Yards.Gained, color=RunGap)) +
        geom_jitter(position=position_jitter(0.2)) +
        stat_summary(fun.data=mean_sdl, mult=1, 
@@ -227,9 +215,8 @@ ggplot(data=rushing_stats %>% filter(!is.na(RunGap)), aes(x=RunGap, y=Yards.Gain
 
 The proportions of run opportunities that was enabled by each offensive line position can also be summarized in a matrix using the command below.
 
-{% highlight R %}
+{% highlight python %}
 # Get proportions of gaps created by different offensive line positions
-
 rush_gaps <- rushing_stats %>% filter(!is.na(RunGap)) %>%
                                filter(!is.na(RunGap)) %>%
                                group_by(Rusher, RunGap) %>%
@@ -241,9 +228,8 @@ row.names(gap_mat) <- gap_mat$Rusher
 gap_mat <- gap_mat %>% select(-Rusher)
 {% endhighlight %}
 
-{% highlight R %}
+{% highlight python %}
 # Plot heatmap of proportions of rushes by different field gaps
-
 pheatmap(gap_mat, border="white", color = brewer.pal(9,"Blues"), cluster_cols=FALSE)
 {% endhighlight %}
 
